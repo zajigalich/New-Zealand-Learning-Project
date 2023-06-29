@@ -63,7 +63,7 @@ namespace NZWalks.UI.Controllers
             var httpResponceMessage = await client.SendAsync(httpRequestMessage);
             httpResponceMessage.EnsureSuccessStatusCode();
 
-            var responce = httpResponceMessage.Content.ReadFromJsonAsync<RegionDto>();
+            var responce = await httpResponceMessage.Content.ReadFromJsonAsync<RegionDto>();
 
             if (responce is not null) 
             {
@@ -71,6 +71,21 @@ namespace NZWalks.UI.Controllers
             }
 
             return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(Guid id)
+        {
+            var client = httpClientFactory.CreateClient();
+
+            var responce = await client.GetFromJsonAsync<RegionDto>($"{configuration["ApiHttpString"]}regions/{id}");
+
+            if (responce is not null)
+            {
+                return View(responce);
+            }
+
+            return View(null);
         }
     }
 } 
