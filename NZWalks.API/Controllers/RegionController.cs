@@ -33,8 +33,8 @@ namespace NZWalks.API.Controllers
         //[Authorize(Roles = "Reader")]
         public async Task<IActionResult> GetAll()
         {
-            logger.LogWarning("This is a warning log");
-            logger.LogError("This is a error log");
+            /*logger.LogWarning("This is a warning log");
+            logger.LogError("This is a error log");*/
 
             // Get Data from DB - Domain Models
             var regionsDomainModel = await regionRepository.GetAllAsync();
