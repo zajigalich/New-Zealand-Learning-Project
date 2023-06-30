@@ -130,7 +130,7 @@ namespace NZWalks.UI.Controllers
 				return RedirectToAction("Index", "Regions");
 			}
 
-            return View();  
+            return View("Edit");  
 
 		}
     }
